@@ -1,0 +1,84 @@
+\documentclass[10pt,twocolumn,letterpaper]{article}
+
+\usepackage{cvpr}
+\usepackage{times}
+\usepackage{epsfig}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+% Include other packages here, before hyperref.
+
+% If you comment hyperref and then uncomment it, you should delete
+% egpaper.aux before re-running latex.  (Or just hit 'q' on the first latex
+% run, let it finish, and you should be clear).
+\usepackage[pagebackref=true,breaklinks=true,letterpaper=true,colorlinks,bookmarks=false]{hyperref}
+
+\cvprfinalcopy % *** Uncomment this line for the final submission
+
+\def\cvprPaperID{****} % *** Enter the CVPR Paper ID here
+\def\httilde{\mbox{\tt\raisebox{-.5ex}{\symbol{126}}}}
+
+% Pages are numbered in submission mode, and unnumbered in camera-ready
+\ifcvprfinal\pagestyle{empty}\fi
+\begin{document}
+
+%%%%%%%%% TITLE
+\title{Chest X-Rays}
+
+
+\author{Konstantinos Katergaris\\
+Arizona State University\\
+1151 S Forest Ave, Tempe, AZ\\
+{\tt\small kkaterga@asu.edu}}
+
+\maketitle
+%\thispagestyle{empty}
+
+
+
+%%%%%%%%% BODY TEXT
+\section{Introduction}
+Chest X-rays (CXR) are a standard imaging technology that uses X-rays to create images of a patient’s chest, including bones, lungs, heart, airways, spine, and arteries. They are a crucial tool for radiologists as a noninvasive way to analyze conditions that may affect the chest, which houses some of the most vital parts of the body. CXRs can detect a multitude of conditions, including cardiac issues, lung diseases, and rib fractures. Additionally, CXRs can detect and analyze foreign objects inside the patient's chest area. This report will provide an overview of what a CXR is, how to read a CXR, and how deep-learning models could be used to interpret CXRs like radiologists.
+
+%-------------------------------------------------------------------------
+\section{What is Chest radiography}
+Chest radiography focuses explicitly on the thoracic cavity. Radiologists use it to monitor and manage various medical conditions affecting the chest. For example, if a child swallows a screw, a radiologist would use a CXR to ensure the screw is safely passing through the child and determine if surgery is necessary to remove it. Other specific applications include detecting rib fractures, collapsed lungs, dislocations, foreign objects in the body, lung infections, and cardiomegaly. There are three different types of Chest X-rays.
+
+The first type is Anteroposterior (AP), where the X-ray passes from the patient's front (anterior) to the back (posterior). It is commonly used on disabled, immobile patients. This is the least desired X-ray type as it is less accurate due to potential obstructions and limited space to better position the patient. The next type is Posteroanterior (PA), where the X-ray passes from the patient's back to the front . Patients usually stand during this X-ray, making it the more accurate type due to the increased space allowing the X-ray technician to position the patient more accurately. The last type is lateral, where the X-ray beams pass through the patient laterally. It is important to know which type of CXR you are looking at because objects in an AP X-ray may appear larger compared to a PA X-ray, and vice versa.
+
+When first examining CXRs, it is apparent that they contain different shades of black and white, referred to as shadows. These shadows come in four different shades: black (lungs or air), gray (soft tissue and fat), off-white (bones), and bright white (foreign objects like metal and joint replacements). Black shades are called radiolucent, while white shades are radio-opaque. Furthermore, denser objects appear brighter (white), and less dense objects appear darker (black). Like regular consumer cameras, CXR images have different exposures, referring to how long the patient was exposed to radiation. Unlike regular cameras, the shorter the exposure time of the X-ray, the brighter the image, and the longer the exposure, the darker the image.
+
+Building on this, CXRs show a subsection of one's anatomy. Firstly, the clavicles should be symmetric to the spine. The patient's ribs should be visible (typically ten), as should the vertebrae and spinous processes, some of which should be visible behind the heart. The heart, typically slightly on the left, should be about 50\% of the thoracic width. Additionally, the aortic arch and pulmonary vasculature should also be visible. The airway and lungs are part of the X-ray, showing the trachea in the midline, bronchi, and lung lobes. The lungs should be mostly black with white fuzzy lines indicating pulmonary vasculature. The diaphragm is another critical structure. The right diaphragm should be higher than the left due to the liver and should have a smooth, curved shape with sharp costophrenic angles. Sometimes, the left diaphragm can show a gastric bubble, which is part of the stomach. There are many ways to interpret the information conveyed by the X-ray, but it is crucial to use the same method each time to avoid missing anything. A common approach is using the mnemonic ABCDEFG, which stands for assessment of quality, bones, cardiac, diaphragm, effusions, lung fields, and great arteries.
+
+
+\section{How to interpret a CRX}
+\subsection{ABCDEFG}
+\subsubsection{A}
+
+Before analyzing anything else, it is important to note the quality of the X-ray you are given. First, determine the type of CXR you are looking at, as this could affect factors in the image, such as heart size and depth distortions. For example, APs have a higher distortion of depth than PAs, which could affect how large body parts appear in the image. A mnemonic for testing the quality of an X-ray is RIPE. R stands for rotation, where there should be equal distance from the spinous process to the clavicles, determining the angle at which the X-ray was taken. I stands for inspiration, tested by checking if 9-12 ribs are visible. P stands for penetration, determined by seeing the thoracic vertebra behind the heart and all the spinous vertebrae. Lastly, the exposure of the image should allow you to see the details of lung markings.
+\subsubsection{B}
+After this, the bones of the body should be considered. It is important to check for fractures, dislocations, and other abnormalities. If an abnormality is found, such as a clavicle fracture or shoulder dislocation, dedicated films will provide better information on the extent of the injury. Also, check that the bones, which should be symmetric and in specific positions, appear normal. The soft tissue surrounding the bones should appear in its normal color, but if there is air in the soft tissue, it will appear darker. Additionally, foreign objects should be looked for in this part of the analysis; dense objects appear radio-opaque.
+\subsubsection{C}
+When looking at the heart in the X-ray, the position and size of the heart are important. The heart should be less than 50\% of the thoracic diameter in PAs and less than 60\% of the thoracic diameter in APs. A heart larger than this could indicate cardiomegaly. The heart should be positioned with two-thirds of the heart on the left side of the thoracic cavity. It is also important to note that the expiration of X-ray beams could also affect the size of the heart in the CXR.
+\subsubsection{D}
+Next is the diaphragm. It should have a smooth, curved shape with sharp costophrenic angles. The right diaphragm is higher than the left due to the liver. If the elevation of the diaphragm is abnormal, the patient may have liver disease. Flat diaphragms suggest overinflation of the lungs. Additionally, a gastric bubble is typically found under the left diaphragm, but if there is air right underneath the diaphragm, it could indicate pneumoperitoneum.
+\subsubsection{E}
+If the patient has blunted costophrenic angles, this could suggest an effusion, which comes in two types: transudate and exudate. To determine the type, a thoracentesis must be performed, where a test fluid is injected into the patient, and the light criteria are used to determine the effusion type. It is important to note that not all effusions need to be investigated; smaller effusions that don’t cause discomfort usually resolve on their own.
+\subsubsection{F}
+Next, check the lung fields. The right lung consists of the upper, middle, and lower lobes, while the left lung has only two lobes, upper and lower. The lungs should be reviewed and scanned for abnormalities, such as consolidation and pneumothorax.
+\subsubsection{G}
+Lastly, check the great vessels, such as the aorta, aortic knob, and pulmonary vasculature, for abnormalities. The aorta and aortic knob should be on the top left and resemble a knob, while the pulmonary vasculature is on each side of the heart in the upper portion. If a patient has pulmonary edema, their pulmonary vasculature may appear larger.
+\section{Can we train deep models to interpret chest X-rays as radiologists do?}
+Deep learning models can and will continue to help radiologists analyze CXRs. For example, deep learning models have been effectively used to diagnose pneumonia\cite{jimaging10080176}, offering an accurate and cost-effective method. Deep learning models can find and interpret complex patterns in data, some more complex than humans could find. Since CXRs produce image data, diagnoses via X-rays could be broken down into problems of image classification, object detection, image segmentation, and localization. Experts manually label these images, which are then fed into models that train to solve these tasks. However, it is important to note that some models, specifically unsupervised models, do not require labels. Despite their capabilities, how these models interpret visual information differs greatly from that of human radiologists. 
+
+For instance, a radiologist can receive an X-ray showing cardiomegaly and explain their diagnosis by pointing out that the heart in the image is enlarged. In contrast, deep learning models struggle with or lack the ability to provide explanations for their diagnoses. Although explainable artificial intelligence (XAI) aims to help models explain their decisions, it currently lacks the ability to present these decisions in words, often relying instead on highlighting regions of the image that justified its analysis\cite{jimaging10080176}. However, this approach is not standardized and can vary from model to model, leading to inconsistencies and a lack of clarity. Additionally, these models lack the insight that radiologists can provide, especially when dealing with cases for which they haven't been adequately trained. For example, if a radiologist encountered an X-ray of a patient who had been shot in the chest, even without prior experience with gunshot wounds, they could recognize the foreign object as a bullet. On the other hand, a classification model trained with limited data on foreign objects might misclassify the bullet as something else \cite{jimaging10080176}. Therefore, while deep learning models can be trained to perform similar tasks, they currently cannot interpret chest X-rays in the same manner as radiologists.
+
+\section{Conclusion}
+Chest X-rays are a vital tool used by radiologists to noninvasively monitor and assess patients' thoracic regions. Consistent interpretation of CXRs is crucial, with one popular method being the ABCDEFG mnemonic, which guides the analysis of each region in the following order: assessment of quality, bones, cardiac, diaphragm, effusions, lung fields, and great arteries. While deep learning models are being developed to interpret CXRs, they approach this task differently from human radiologists.
+{\small
+\bibliographystyle{ieee_fullname}
+\bibliography{egbib}
+}
+
+\end{document}
